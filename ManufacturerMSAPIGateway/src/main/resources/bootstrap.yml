@@ -1,0 +1,48 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8001
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        health-check-interval: 10s
+  application:
+    name: manufacturer-apigateway
+  aop:
+    proxy-target-class: true
+management:
+  port: 9040
+server:
+  port: 8040
+security:
+  basic:
+    enabled: false
+  oauth2:
+    sso:
+      login-path: /login
+    client:
+      access-token-uri: http://localhost:8030/secure/oauth/token
+      clientId: acme
+      client-secret: acmesecret
+    resource:
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1qzkQfSCPZPYmAGPVWg7
+          W0yReGBeTLSh8D40dRkUXIrEGtpTZwCLODbDfgTup52gUq6gArTPsaND8fOm9Z/d
+          e1WeuFRLbvIPtCR+1YkA4KqxMdXUOFEIRr2TijhaGyrkgqMDAhkb0sN+fB35fYS/
+          1xiJMGYFSgcKBDGn8T5blfKUWOdF7HMSiBW+/8F2hhRake/hIAa5Hu44sWyhc6uL
+          bgRu0TwxKu2HA3AC9YF7ONLgtq/Q8DjbvAmOs6+RFS9NFEZh6uopSMFfu1Cva/oL
+          hTIdVPEbrvxXTkM5WfdW5X8koAHLuPUj07sPYW6SRQYWG5tOVq9fPugDZgg0RBHA
+          4wIDAQAB
+          -----END PUBLIC KEY-----
+      id: openid
+      serviceId: ${PREFIX:}resource
+zuul:
+  routes:
+    manufacturer-microservice: /ms/**
+    oauth-server:
+      sensitive-headers: null
+      path: /secure/**
+      strip-prefix: false
+  add-proxy-headers: true

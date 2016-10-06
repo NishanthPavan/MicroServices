@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8001
+  application:
+    name: oauth-server
+
+management:
+  port: 9030 
+
+server:
+  port: 8030
+  context-path: /secure
+  
+security:
+  basic:
+    enabled: false
+  user:
+    password: password
+  ignored:
+    /CSS/**,/JS/**,/favicon.ico,/webjars/**
+    
+ 
