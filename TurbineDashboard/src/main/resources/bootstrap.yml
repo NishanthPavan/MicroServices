@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8001
+  application:
+    name: hystrix-dashboard
+
+management:
+  port: 5556
+
+server:
+  port: 8020
+  
+# server
+#  port: ${PORT:${SERVER_PORT:0}}

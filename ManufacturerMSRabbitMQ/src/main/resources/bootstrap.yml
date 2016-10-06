@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8001
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        health-check-interval: 10s
+  application:
+    name: manufacturer-rabbitmq-microservice
+management:
+  port: 9013
+server:
+  port: 8019

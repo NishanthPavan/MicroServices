@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8001
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        health-check-interval: 10s
+        #health-check-path: ${management.contextpath}/health
+      
+  application:
+    name: manufactureloadbal-microservice
+
+management:
+  port: 9016
+
+server:
+  port: 8007
+  
+# server
+#  port: ${PORT:${SERVER_PORT:0}}
