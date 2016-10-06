@@ -10,8 +10,8 @@ spring:
     name: manufacturer-apigateway
   aop:
     proxy-target-class: true
-management:
-  port: 9040
+#management:
+#  port: 9040
 server:
   port: 8040
 security:

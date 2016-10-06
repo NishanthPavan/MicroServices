@@ -29,18 +29,18 @@ import org.springframework.web.filter.OncePerRequestFilter;
 /**
  * @author Thibaud Leprêtre
  */
-@Configuration
-@EnableOAuth2Sso
-@EnableWebSecurity
+//@Configuration
+//@EnableOAuth2Sso
+//@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
     private static final String CSRF_HEADER_NAME = "X-XSRF-TOKEN";
 
-    @Bean
+   /* @Bean
     @Primary
     public OAuth2ClientContextFilter dynamicOauth2ClientContextFilter() {
         return new DynamicOauth2ClientContextFilter();
-    }
+    }*/
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
